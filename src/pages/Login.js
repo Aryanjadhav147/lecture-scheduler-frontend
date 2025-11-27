@@ -42,6 +42,9 @@ export default function Login() {
         <p className="mt-4 text-xs text-center text-gray-500">
           Demo Admin: admin@test.com / admin123
         </p>
+         <p className="mt-4 text-xs text-center text-gray-500">
+          Instructor Name:aryan@gmail.com / 12345678
+        </p>
       </div>
     </div>
   );
