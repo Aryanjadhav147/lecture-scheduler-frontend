@@ -6,14 +6,14 @@
 **Submitted by:** Aryan Jadhav
 **For:** Ideamagix Internship - Review Test Assignment
 
-## 🚀 Live Demo
+##  Live Demo
 * **Frontend (Netlify):** [https://lecture-scheduler.netlify.app]
 * **Backend (Railway):** [https://lecture-scheduler-backend-production-5328.up.railway.app/]
 * **GitHub Repository:** [https://github.com/Aryanjadhav147]
 
 ---
 
-## 🔑 Login Credentials
+##  Login Credentials
 Please use the following credentials to test the application roles:
 
 | Role | Email | Password | Access |
@@ -58,7 +58,7 @@ This is a comprehensive web-based scheduling system designed to streamline the a
 
 ### 1. Clone the Repository
 bash
-git clone [YOUR_GITHUB_REPO_LINK]
+git clone [https://github.com/Aryanjadhav147/lecture-scheduler-frontend]
 cd lecture-scheduler
 `
 
