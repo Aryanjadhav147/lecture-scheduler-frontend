@@ -46,7 +46,7 @@ This is a comprehensive web-based scheduling system designed to streamline the a
 * **Backend:** Node.js, Express.js.
 * **Database:** MongoDB (Atlas Cloud).
 * **Authentication:** JWT & Bcrypt.js.
-* **Deployment:** Netlify (Client) & Render (Server).
+* **Deployment:** Netlify (Client) & Railway (Server).
 
 ---
 
