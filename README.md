@@ -58,7 +58,7 @@ This is a comprehensive web-based scheduling system designed to streamline the a
 
 ### 1. Clone the Repository
 bash
-git clone [https://github.com/Aryanjadhav147/lecture-scheduler-frontend]
+git clone [https://github.com/Aryanjadhav147/lecture-scheduler-backend]
 cd lecture-scheduler
 `
 
