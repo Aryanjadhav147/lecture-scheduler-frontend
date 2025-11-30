@@ -1,70 +1,122 @@
-# Getting Started with Create React App
+-----
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+`markdown
+# Online Lecture Scheduling Module
 
-## Available Scripts
+**Submitted by:** Aryan Jadhav
+**For:** Ideamagix Internship - Review Test Assignment
 
-In the project directory, you can run:
+## 🚀 Live Demo
+* **Frontend (Netlify):** [https://lecture-scheduler.netlify.app]
+* **Backend (Railway):** [https://lecture-scheduler-backend-production-5328.up.railway.app/]
+* **GitHub Repository:** [https://github.com/Aryanjadhav147]
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🔑 Login Credentials
+Please use the following credentials to test the application roles:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+| Role | Email | Password | Access |
+| :--- | :--- | :--- | :--- |
+| **Admin** | `admin@test.com` | `admin123` | Full access to schedule lectures, manage courses & instructors. |
+| **Instructor** | `rahul@test.com` | `123` | Read-only access to view their own assigned lectures. |
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+##  Project Overview
+This is a comprehensive web-based scheduling system designed to streamline the allocation of lectures to instructors. The core functionality ensures that **no instructor can be assigned two lectures that overlap or occur on the same date** (based on strict conflict rules), preventing scheduling clashes.
 
-### `npm run build`
+### Core Features Implemented
+1.  **Admin Dashboard:**
+    * **Instructor Management:** Add and view instructors.
+    * **Course Management:** Create courses with details (Level, Description, Image).
+    * **Lecture Scheduling:** A sophisticated interface to assign lectures.
+    * **Conflict Detection:** **(Highlight)** The system automatically checks database records and prevents booking an instructor if they are already occupied on the selected date/time.
+2.  **Instructor Panel:**
+    * Personalized dashboard showing only lectures assigned to the logged-in instructor.
+    * Course details populate automatically.
+3.  **Authentication:**
+    * Secure JWT (JSON Web Token) implementation.
+    * Role-based access control (Admin vs. Instructor).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+##  Tech Stack
+* **Frontend:** React.js, Tailwind CSS, Axios, React Router.
+* **Backend:** Node.js, Express.js.
+* **Database:** MongoDB (Atlas Cloud).
+* **Authentication:** JWT & Bcrypt.js.
+* **Deployment:** Netlify (Client) & Render (Server).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+##  Local Setup Instructions
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Prerequisites
+* Node.js installed.
+* MongoDB URI (or local instance).
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 1. Clone the Repository
+bash
+git clone [YOUR_GITHUB_REPO_LINK]
+cd lecture-scheduler
+`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 2\. Backend Setup
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+bash
+cd server
+npm install
+# Create a .env file with:
+# MONGO_URI=your_mongodb_string
+# JWT_SECRET=mysecretkey
+# PORT=5000
 
-## Learn More
+# Seed the Admin User
+node seed.js
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# Start Server
+node server.js
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+### 3\. Frontend Setup
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+bash
+cd client
+npm install
+npm start
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+The app will run on `http://localhost:3000`.
 
-### Making a Progressive Web App
+-----
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+##  API Endpoints
 
-### Advanced Configuration
+### Authentication
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+  * `POST /api/auth/login` - Authenticate user and return JWT.
 
-### Deployment
+### Admin Routes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+  * `GET /api/admin/instructors` - List all instructors.
+  * `POST /api/admin/instructors` - Create a new instructor.
+  * `GET /api/admin/courses` - List all courses.
+  * `POST /api/admin/courses` - Create a new course.
+  * `POST /api/admin/lectures` - Schedule a lecture (**triggers conflict check**).
 
-### `npm run build` fails to minify
+### Instructor Routes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  * `GET /api/instructor/lectures` - Fetch lectures for the logged-in user.
+
+-----
+
+##  Assumptions & Logic
+
+  * **Conflict Logic:** The requirement stated "admin should be unable to assign him any other lecture on that date". The system implements a strict check: if an instructor has *any* lecture on a specific Date, they are marked as busy for that entire day to prevent travel/schedule clashes.
+  * **Security:** Passwords are hashed using bcrypt before storage.
+
+<!-- end list -->
+
+
+```
